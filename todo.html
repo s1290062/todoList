@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TODOリスト</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div class="input-div">
+      <input id="input-add" type="text" placeholder="ここにTODOを記述する" />
+      <button id="btn-add">追加</button>
+    </div>
+
+    <div class="flex-div">
+      <div class="mikanryo-div">
+        <p class="ttl">未完了</p>
+        <ul id="mikanryo-ul">
+        </ul>
+      </div>
+      <div class="kanryo-div">
+        <p class="ttl">完了</p>
+        <ul id="kanryo-ul"></ul>
+        
+      </div>
+    </div>
+
+    <script>
+const createMikanryoItem = (todoText) => {
+  
+    const li = document.createElement("li");
+
+  
+    const span = document.createElement("span");
+    span.innerText = todoText;
+
+   
+    const okbutton = document.createElement("button");
+    okbutton.innerText = "ＯＫ";
+    okbutton.addEventListener("click", () => {
+     
+        const deleteItem = hakibutton.parentNode;
+        document.getElementById("mikanryo-ul").removeChild(deleteItem);
+
+     
+        const li = document.createElement("li");
+
+      
+        const span = document.createElement("span");
+        span.innerText = todoText;
+
+       
+        const modosubutton = document.createElement("button");
+        modosubutton.innerText = "未完了へ戻す";
+        modosubutton.addEventListener("click", () => {
+           
+            const deleteItem = modosubutton.parentNode;
+            document.getElementById("kanryo-ul").removeChild(deleteItem);
+
+            
+            createMikanryoItem(todoText);
+        });
+
+    
+        li.appendChild(span)
+        li.appendChild(modosubutton)
+
+        
+        const kanryoList = document.getElementById("kanryo-ul");
+        kanryoList.appendChild(li);
+    });
+
+    
+    const hakibutton = document.createElement("button");
+    hakibutton.innerText = "削除";
+    hakibutton.addEventListener("click", () => {
+       
+        const deleteItem = hakibutton.parentNode;
+        document.getElementById("mikanryo-ul").removeChild(deleteItem);
+    });
+
+
+    li.appendChild(span);
+    li.appendChild(okbutton);
+    li.appendChild(hakibutton);
+
+ 
+    const mikanryoList = document.getElementById("mikanryo-ul");
+    mikanryoList.appendChild(li);
+};
+
+const onClickAdd = () => {
+  const todoText = document.getElementById("input-add").value;
+  document.getElementById("input-add").value = "";
+
+  createMikanryoItem(todoText);
+};
+
+
+document
+  .getElementById("btn-add")
+  .addEventListener("click", () => onClickAdd());
+    </script>
+  </body>
+</html>
